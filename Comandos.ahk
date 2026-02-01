@@ -149,7 +149,12 @@ SetKeyDelay 50
 #HotIf MouseIsOver("ahk_class Shell_TrayWnd") or MouseIsOver("ahk_class Shell_SecondaryTrayWnd")
     WheelUp::  Send "{Volume_Up}"
     WheelDown::Send "{Volume_Down}"
-    MButton::  Send "{Volume_Mute}"
+    
+    MButton::
+    {
+        SoundSetMute "-1"
+        ; SoundBeep 750, 100 ; Un pequeño pitido para confirmar
+    }
 #HotIf
 
 !WheelUp::   CambiarVolumenApp(5)
