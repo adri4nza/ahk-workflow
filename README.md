@@ -53,8 +53,8 @@ Para que este script funcione correctamente, necesitas:
 Abre tu terminal y ejecuta:
 
 ```bash
-git clone https://github.com/TU_USUARIO/win-dotfiles.git
-cd win-dotfiles
+git clone https://github.com/adri4nza/ahk-workflow.git
+cd ahk-workflow
 ```
 
 ### 2. Organizar las herramientas
