@@ -27,6 +27,7 @@ Rotación rápida de pantalla sin entrar a la configuración de Windows. Ideal s
 | `Win` + `Alt` + `C` | **Color Picker**: Copia el HEX del color bajo el mouse al portapapeles. |
 | `Alt Derecho` + `n`, `a`, `e`, `i`, `o`, `u` | Escribe ñ, á, é, í, ó, ú. |
 | `Alt Derecho` + `?`, `1` | Escribe ¿ y ¡. |
+| `clg` + `Espacio` | **Snippet JS** | Escribe `console.log();` y pone el cursor dentro. |
 
 ### 🛠️ Mantenimiento del Script (Workflow)
 | Atajo | Acción |

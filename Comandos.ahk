@@ -112,6 +112,7 @@ RotarPantalla(grados) {
 ; ==============================================================================
 ; 4. UTILIDADES
 ; ==============================================================================
+#HotIf !WinActive("ahk_exe javaw.exe")
 ^SPACE::
 {
     if WinGetExStyle("A") & 0x8 {
@@ -124,6 +125,7 @@ RotarPantalla(grados) {
     }
     SetTimer () => ToolTip(), -2000
 }
+#HotIf
 
 ::clg::console.log();{Left 2}
 
@@ -160,6 +162,34 @@ SetKeyDelay 50
 !WheelUp::   CambiarVolumenApp(5)
 !WheelDown:: CambiarVolumenApp(-5)
 
+; B) Volumen POR APP (Scroll sobre Botones: Minimizar, Maximizar, Cerrar)
+; Detecta si el mouse está sobre los botones de control de la ventana
+#HotIf MouseIsOverTitleButtons()
+    WheelUp:: CambiarVolumenApp(5)
+    WheelDown:: CambiarVolumenApp(-5)
+#HotIf
+
+; --- Función Auxiliar para detectar botones de ventana ---
+MouseIsOverTitleButtons() {
+    MouseGetPos , , &WinID
+    if !WinID
+        return false
+
+    ; Necesitamos coordenadas absolutas (Screen) para el mensaje de Windows
+    CoordMode "Mouse", "Screen"
+    MouseGetPos &MX, &MY
+    
+    try {
+        ; WM_NCHITTEST (0x0084) pregunta a la ventana: "¿Qué hay bajo el mouse?"
+        ; Empaquetamos las coordenadas X e Y en el LPARAM
+        HitTest := SendMessage(0x84, 0, (MY << 16) | (MX & 0xFFFF), , "ahk_id " WinID)
+        
+        ; Códigos de retorno de Windows:
+        ; 8 = MinButton, 9 = MaxButton, 20 = CloseButton
+        return (HitTest = 8 || HitTest = 9 || HitTest = 20)
+    }
+    return false
+}
 CambiarVolumenApp(step) {
     global Path_SoundView
     MouseGetPos , , &WinID
