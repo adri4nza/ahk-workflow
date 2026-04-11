@@ -12,6 +12,7 @@ Rotación rápida de pantalla sin entrar a la configuración de Windows. Ideal s
 | `Ctrl` + `Alt` + `⬆️` | Poner pantalla en **Horizontal** (Normal) |
 | `Ctrl` + `Alt` + `➡️` | Poner pantalla en **Vertical** (90°) |
 | `Ctrl` + `Alt` + `⬅️` | Poner pantalla en **Vertical Invertido** (270°) |
+| `Ctrl` + `Alt` + `P` | Alterna entre **Pantalla Extendida** y **Solo Monitor Principal**. |
 
 ### 🔊 Control de Audio Avanzado
 | Atajo | Acción |

@@ -100,6 +100,7 @@ if not A_IsAdmin {
 ^!Up::    RotarPantalla(0)
 ^!Right:: RotarPantalla(90)
 ^!Left::  RotarPantalla(270)
+^!p::     AlternarProyeccionPantalla()
 
 RotarPantalla(grados) {
     global Path_MonitorTool, MonitorID
@@ -107,6 +108,28 @@ RotarPantalla(grados) {
         Run(Path_MonitorTool . " /SetOrientation " . MonitorID . " " . grados, , "Hide")
     else
         MsgBox("Error: Ruta de MultiMonitorTool no válida en .env")
+}
+
+AlternarProyeccionPantalla() {
+    static ModoExtendido := true
+    DisplaySwitch := A_WinDir . "\System32\DisplaySwitch.exe"
+
+    if !FileExist(DisplaySwitch) {
+        MsgBox("Error: No se encontró DisplaySwitch.exe")
+        return
+    }
+
+    if ModoExtendido {
+        Run(DisplaySwitch . " /internal", , "Hide") ; Solo pantalla principal
+        ToolTip "🖥️ Proyección: Solo monitor"
+    }
+    else {
+        Run(DisplaySwitch . " /extend", , "Hide") ; Extender escritorio
+        ToolTip "🖥️ Proyección: Extendida"
+    }
+
+    ModoExtendido := !ModoExtendido
+    SetTimer () => ToolTip(), -1500
 }
 
 ; ==============================================================================
